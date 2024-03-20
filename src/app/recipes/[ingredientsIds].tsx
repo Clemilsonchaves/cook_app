@@ -1,11 +1,30 @@
 import { Text, View , FlatList } from "react-native"
 import { styles } from "./styles"
 import { MaterialIcons } from "@expo/vector-icons"
-import { router } from "expo-router"
+import { router, useLocalSearchParams } from "expo-router"
 
 import { Recipe } from "@/components/Recipe"
+import { useEffect, useState } from "react"
+import { services } from "@/services"
+import { Ingredients } from "@/components/Ingredients"
 
 export default function Recipes(){
+  const [ ingredients, setIgredients ] = useState<IngredientResponse[]>([])
+  const [ recipes, setRecipes ] = useState<RecipeResponse[]>([])
+  const params = useLocalSearchParams<{ ingredientsIds: string}>()
+ 
+ 
+  const ingredientesIds = params.ingredientsIds.split(",")
+
+  useEffect(() => {
+     services.ingredients.findByIds(ingredientesIds).then(setIgredients)
+  }, [])
+  
+
+  useEffect(() => {
+    services.recipes.findByIngredientsIds(ingredientesIds).then(setRecipes)
+ }, [])
+ 
   return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -19,17 +38,24 @@ export default function Recipes(){
 
         </View>
 
-       
+       <Ingredients ingredients={ingredients} />
 
-        <FlatList 
-          data={["1"]}
-          keyExtractor={(item) => item}
-          renderItem={() => (
-            <Recipe recipe={{ name: "Omelete", image: "https://tse1.mm.bing.net/th?id=OIP.xrYDcY81imTWXA8aRe63CwHaEw&pid=Api&P=0&h=180",
-            minutes: 10 }} /> 
-           
-          )}   
-         />   
+      <FlatList 
+          data={recipes}
+          keyExtractor={(item) => item.id}
+          renderItem={( { item }) => (
+          
+            <Recipe 
+            recipe={ item } 
+            onPressOut={() => router.navigate("/recipe/" + item.id )}
+            /> 
+          )} 
+          style={styles.recipes}  
+          contentContainerStyle={styles.recipesContent}
+          showsVerticalScrollIndicator={false}
+          columnWrapperStyle={{ gap: 16 }}
+          numColumns={2}
+        />     
       
       </View>   
   
