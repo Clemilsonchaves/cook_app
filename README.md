@@ -4,11 +4,11 @@
 
 <div style="display: flex; justify-content: space-between;" >
  
-  <img width="30%" alt="Banner" title="Banner" src="./assets/images/Ingredientes selecionados.png" />
+  <img width="20%" alt="Banner" title="Banner" src="./assets/images/Ingredientes selecionados.png" />
 
-  <img width="30%" alt="Banner" title="Banner" src="./assets/images/Receitas.png" />
+  <img width="20%" alt="Banner" title="Banner" src="./assets/images/Receitas.png" />
 
-  <img width="30%" alt="Banner" title="Banner" src="./assets/images/Receita.png" />
+  <img width="20%" alt="Banner" title="Banner" src="./assets/images/Receita.png" />
 
 
 </div>
