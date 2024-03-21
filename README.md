@@ -4,7 +4,7 @@
 
 <div style="display: flex; justify-content: space-between;" >
  
-  <img width="20%" alt="Banner" title="Banner" src="./assets/images/Ingredientes selecionados.png" />
+  <img width="20%" alt="Banner" title="Banner" src="./assets/images/Ingredientesselecionados.png"  /> 
 
   <img width="20%" alt="Banner" title="Banner" src="./assets/images/Receitas.png" />
 
